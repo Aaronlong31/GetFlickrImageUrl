@@ -1,9 +1,30 @@
 <script type="text/javascript" src="jquery-2.0.2.min.js"></script>
 <script type="text/javascript" src="popup.js"></script>
+<style type="text/css">
+  body{
+    font-family:helvetica, arial;
+    font-size:12px;
+    width:467px;
+  }
+  li{
+    list-style:none;
+    float:left;
+    width:230px;
+  }
+  #urls{
+    width:466px;
+    height:300px;
+  }
+  #loading{
+    display:none;
+  }
+</style>
 
-PhotoSet Id: <input id="setId" type="text" /><button id="load">Load</button>
+PhotoSet Id: <input id="setId" type="text" />
+<button id="load">Load</button>
+<img id="loading" src="loading.gif" alt="Loading..." />
 <div id="sizes">
 
 </div>
 
-<textarea id="urls" name="" rows="10" cols="90"></textarea>
+<textarea id="urls"></textarea>

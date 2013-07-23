@@ -4,29 +4,43 @@
     var getPhotoSetUrl = apiUrl + "flickr.photosets.getPhotos&photoset_id=";
     var getPhotoUrl = apiUrl + "flickr.photos.getSizes&photo_id="
     var photos = [];
+    var totalCount = 0;
+    var loadedCount = 0;
     
     function getPhotoSet(id) {
-        $.ajax({
+      $("#loading").show();
+      $("#load").hide();
+      $.ajax({
             url: getPhotoSetUrl + id,
             dataType: "json",
             async: false,
             success: function(data) {
                 var ps = data.photoset.photo;
+                totalCount = ps.length;
                 $.each(ps, function(i, p){
-                    $.ajax({
-                        url: getPhotoUrl + p.id,
-                        dataType : "json",
-                        success: function(pd) {
-                            photos.push(pd.sizes.size);
-                            if (!sizeRadioShow) {
-                                showSizeRadios(pd.sizes.size);
-                            }
-                        }
-                    });
+                  getPhoto(p.id);
                 });
             }
         });
     }
+
+    function getPhoto(photoId) {
+      $.ajax({
+        url: getPhotoUrl + photoId,
+        dataType : "json",
+        success: function(pd) {
+          photos.push(pd.sizes.size);
+          if (++loadedCount == totalCount){
+            $("#loading").hide();
+            $("#load").show();
+          }
+          if (!sizeRadioShow) {
+            showSizeRadios(pd.sizes.size);
+          }
+        }
+      });
+    }
+
 
     var sizeRadioShow = false;
 
