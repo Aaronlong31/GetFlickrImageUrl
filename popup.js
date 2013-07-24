@@ -1,5 +1,5 @@
 (function(){
-    var apiKey = "44bc1c89c13a0743511d56b1cdd03502";
+    var apiKey = "b49ec1dec47e35f1d9af6197c4062dfe";
     var apiUrl = "http://api.flickr.com/services/rest/?format=json&api_key=" + apiKey + "&nojsoncallback=1&method=";
     var getPhotoSetUrl = apiUrl + "flickr.photosets.getPhotos&photoset_id=";
     var getPhotoUrl = apiUrl + "flickr.photos.getSizes&photo_id=";
