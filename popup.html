@@ -1,30 +1,45 @@
 <script type="text/javascript" src="jquery-2.0.2.min.js"></script>
 <script type="text/javascript" src="popup.js"></script>
 <style type="text/css">
-  body{
-    font-family:helvetica, arial;
-    font-size:12px;
-    width:467px;
-  }
-  li{
-    list-style:none;
-    float:left;
-    width:230px;
-  }
-  #urls{
-    width:466px;
-    height:300px;
-  }
-  #loading{
-    display:none;
-  }
+    body{
+        font-family:helvetica, arial;
+        font-size:12px;
+        width:467px;
+    }
+    li{
+        list-style:none;
+        float:left;
+        width:230px;
+    }
+    #urls{
+        width:466px;
+        height:300px;
+    }
+    #loading{
+        display:none;
+    }
+    #urls{
+        display:none;
+    }
+    #all{
+        border:1px solid green;
+        width:400px;
+        height:20px;
+        display:none;
+    }
+    #ld{
+        background-color:green;
+        width:0px;
+        height:20px;
+    }
 </style>
 
 PhotoSet Id: <input id="setId" type="text" />
 <button id="load">Load</button>
 <img id="loading" src="loading.gif" alt="Loading..." />
+<span id="loadedCount">0</span>/<span id="totalCount">0</span>
+<div id="all"><div id="ld"></div></div>
 <div id="sizes">
-
 </div>
 
 <textarea id="urls"></textarea>
