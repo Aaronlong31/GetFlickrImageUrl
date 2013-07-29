@@ -10,6 +10,11 @@
     function getPhotoSet(id) {
         $("#loading").show();
         $("#load").hide();
+        photos = [];
+        totalCount = 0;
+        loadedCount = 0;
+        $("#totalCount").text(0);
+        $("#urls").val("").hide();
         $.ajax({
             url: getPhotoSetUrl + id,
             dataType: "json",
@@ -17,6 +22,7 @@
             success: function(data) {
                 var ps = data.photoset.photo;
                 totalCount = ps.length;
+                $("#totalCount").text(totalCount);
                 $.each(ps, function(i, p){
                     getPhoto(p.id);
                 });
@@ -27,13 +33,15 @@
     function getPhoto(photoId) {
         $.ajax({
             url: getPhotoUrl + photoId,
-            dataType : "json",
+            dataType: "json",
             success: function(pd) {
                 photos.push(pd.sizes.size);
                 if (++loadedCount == totalCount){
                     $("#loading").hide();
                     $("#load").show();
                 }
+
+                $("#loadedCount").text(loadedCount);
                 if (!sizeRadioShow) {
                     showSizeRadios(pd.sizes.size);
                 }
@@ -69,7 +77,7 @@
             $.each(photos, function(i, p){
                 urls += p[t.value].source + "\n";
             });
-            $("#urls").val(urls);
+            $("#urls").val(urls).show();
         });
     });
 })();
