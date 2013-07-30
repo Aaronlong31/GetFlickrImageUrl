@@ -15,18 +15,25 @@
         loadedCount = 0;
         $("#totalCount").text(0);
         $("#urls").val("").hide();
-        $("#all").show();
+        $("#errorMessage").text("").show();
         $.ajax({
             url: getPhotoSetUrl + id,
             dataType: "json",
-            async: false,
             success: function(data) {
-                var ps = data.photoset.photo;
-                totalCount = ps.length;
-                $("#totalCount").text(totalCount);
-                $.each(ps, function(i, p){
-                    getPhoto(p.id);
-                });
+                if (data.stat == 'ok') {
+                    var ps = data.photoset.photo;
+                    totalCount = ps.length;
+                    $("#totalCount").text(totalCount);
+                    $("#all").show();
+                    $.each(ps, function(i, p){
+                        getPhoto(p.id);
+                    });
+                } else {
+                    $("#loading").hide();
+                    $("#load").show();
+                    $("#all").hide();
+                    $("#errorMessage").text(data.message).show();
+                }
             }
         });
     }
